@@ -67,8 +67,8 @@ class Note:
                 f"{'Title:'.ljust(9)}{self.title}\n"
                 f"{'Text:'.ljust(9)}{self.text}\n"
                 f"{'Tags:'.ljust(9)}{tags}\n"
-                f"{'Created:'.ljust(9)}{self.created.strftime('%d.%m.%Y - %H:%m')}\n"
-                f"{'Updated:'.ljust(9)}{self.updated.strftime('%d.%m.%Y - %H:%m')}")
+                f"{'Created:'.ljust(9)}{self.created.strftime('%d.%m.%Y - %H:%M')}\n"
+                f"{'Updated:'.ljust(9)}{self.updated.strftime('%d.%m.%Y - %H:%M')}")
 
     def edit_title(self, value: str):
         """
@@ -99,6 +99,18 @@ class Note:
         """
         tag = Tag(value)
         self.tags.add(tag)
+
+    def add_tags(self, value: str):
+        """
+        Add a set of tags to the note.
+
+        Args:
+            value (str): The new tags string, separated by ','.
+        """
+        tags_list = value.split(',')
+
+        for tag in tags_list:
+            self.add_tag(tag)
 
     def check_tag(self, value: str) -> bool:
         """

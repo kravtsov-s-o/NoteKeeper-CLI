@@ -135,3 +135,21 @@ class Note:
         if self.check_tag(value):
             self.tags.discard(Tag(value))
             self.updated = self.updated_time()
+
+    def match(self, value: str) -> bool:
+        """
+        Check if the current note has user value in Title, text or tag.
+
+        Args:
+            value (str): Searching phrase.
+
+        Returns:
+            bool: True if the current note has user value in Title, text or tag.
+        """
+        if self.check_tag(value):
+            return True
+
+        if value.lower() in self.title.value.lower() or value.lower() in self.text.value.lower():
+            return True
+
+        return False
